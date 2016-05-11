@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE TheArduIDE>
+<TheArduIDE>
+	<ProjectType value="0"/>
+	<Files>
+		<item>FishinoWiFiWebClientRepeating.ino</item>
+	</Files>
+	<Libraries>
+		<item>Flash</item>
+		<item>Fishino</item>
+		<item>SPI</item>
+	</Libraries>
+	<OpenedFiles>
+		<key>/home/massimo/sketchbook/FishinoWiFiWebClientRepeating/FishinoWiFiWebClientRepeating.ino</key>
+		<value value="5143"/>
+	</OpenedFiles>
+	<CurrentFile>/home/massimo/sketchbook/FishinoWiFiWebClientRepeating/FishinoWiFiWebClientRepeating.ino</CurrentFile>
+</TheArduIDE>

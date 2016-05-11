@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE TheArduIDE>
+<TheArduIDE>
+	<ProjectType value="0"/>
+	<Files>
+		<item>FishinoScanNetworks.ino</item>
+	</Files>
+	<Libraries>
+		<item>Fishino</item>
+		<item>Flash</item>
+		<item>SPI</item>
+	</Libraries>
+	<OpenedFiles>
+		<key>/home/massimo/sketchbook/FishinoScanNetworks/FishinoScanNetworks.ino</key>
+		<value value="0"/>
+	</OpenedFiles>
+	<CurrentFile>/home/massimo/sketchbook/FishinoScanNetworks/FishinoScanNetworks.ino</CurrentFile>
+</TheArduIDE>

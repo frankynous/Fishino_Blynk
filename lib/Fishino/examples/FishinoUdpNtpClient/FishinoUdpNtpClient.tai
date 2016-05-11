@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE TheArduIDE>
+<TheArduIDE>
+	<ProjectType value="0"/>
+	<Files>
+		<item>FishinoUdpNtpClient.ino</item>
+	</Files>
+	<Libraries>
+		<item>Fishino</item>
+		<item>Flash</item>
+		<item>SPI</item>
+	</Libraries>
+	<OpenedFiles>
+		<key>/home/massimo/sketchbook/FishinoUdpNtpClient/FishinoUdpNtpClient.ino</key>
+		<value value="1051"/>
+		<key>/home/massimo/sketchbook/libraries/Fishino/src/FishinoUdp.h</key>
+		<value value="3120"/>
+	</OpenedFiles>
+	<CurrentFile>/home/massimo/sketchbook/FishinoUdpNtpClient/FishinoUdpNtpClient.ino</CurrentFile>
+</TheArduIDE>

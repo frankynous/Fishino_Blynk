@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE TheArduIDE>
+<TheArduIDE>
+	<ProjectType value="0"/>
+	<Files>
+		<item>FishinoWiFiWebServer.ino</item>
+	</Files>
+	<Libraries>
+		<item>Fishino</item>
+		<item>Flash</item>
+		<item>SPI</item>
+		<item>SD</item>
+	</Libraries>
+	<OpenedFiles>
+		<key>/home/massimo/sketchbook/FishinoWiFiWebServer/FishinoWiFiWebServer.ino</key>
+		<value value="1534"/>
+	</OpenedFiles>
+	<CurrentFile>/home/massimo/sketchbook/FishinoWiFiWebServer/FishinoWiFiWebServer.ino</CurrentFile>
+</TheArduIDE>

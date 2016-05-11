@@ -1,0 +1,192 @@
+diff -Naur Blynk/Adapters/BlynkFishino.h Blynk_Fishino/Adapters/BlynkFishino.h
+--- Blynk/Adapters/BlynkFishino.h	1970-01-01 01:00:00.000000000 +0100
++++ Blynk_Fishino/Adapters/BlynkFishino.h	2016-04-18 18:52:30.000000000 +0200
+@@ -0,0 +1,102 @@
++/**
++ * @file       BlynkFishino.h
++ * @author     Massimo Del Fedele
++ * @license    This project is released under the MIT License (MIT)
++ * @copyright  Copyright (c) 2016 Massimo Del Fedele
++ * @date       Apr 2016
++ * @brief
++ *
++ */
++
++#ifndef BlynkFishino_h
++#define BlynkFishino_h
++
++#ifndef BLYNK_INFO_CONNECTION
++#define BLYNK_INFO_CONNECTION "Fishino"
++#endif
++
++#include <BlynkApiArduino.h>
++#include <Blynk/BlynkProtocol.h>
++#include <Adapters/BlynkArduinoClient.h>
++
++class BlynkWifiCommon
++    : public BlynkProtocol<BlynkArduinoClient>
++{
++    typedef BlynkProtocol<BlynkArduinoClient> Base;
++public:
++    BlynkWifiCommon(BlynkArduinoClient& transp)
++        : Base(transp)
++    {}
++
++    void connectWiFi(const char* ssid, const char* pass)
++    {
++		if(!Fishino.reset()){
++            BLYNK_FATAL("Fishino reset failed");
++        }
++
++	// go into station mode
++	Fishino.setMode(STATION_MODE);
++
++		// try forever to connect to AP
++		// tenta la connessione finchè non riesce
++		Serial << F("Connecting to AP...");
++		while(!Fishino.begin(ssid, pass))
++		{
++			Serial << ".";
++			delay(2000);
++		}
++		Serial << "OK\n";
++		Fishino.staStartDHCP();
++
++		// wait till connection is established
++		Serial << F("Waiting for IP...");
++		while(Fishino.status() != STATION_GOT_IP)
++		{
++			Serial << ".";
++			delay(500);
++		}
++		Serial << "OK\n";
++
++        IPAddress myip = Fishino.localIP();
++        BLYNK_LOG("My IP: %d.%d.%d.%d", myip[0], myip[1], myip[2], myip[3]);
++    }
++
++    void config(const char* auth,
++            	const char* domain = BLYNK_DEFAULT_DOMAIN,
++                uint16_t    port   = BLYNK_DEFAULT_PORT)
++    {
++    	Base::begin(auth);
++    	this->conn.begin(domain, port);
++    }
++
++    void config(const char* auth,
++            	IPAddress   ip,
++                uint16_t    port = BLYNK_DEFAULT_PORT)
++    {
++    	Base::begin(auth);
++    	this->conn.begin(ip, port);
++    }
++
++    void begin(const char* auth,
++               const char* ssid,
++               const char* pass,
++               const char* domain = BLYNK_DEFAULT_DOMAIN,
++               uint16_t port      = BLYNK_DEFAULT_PORT)
++    {
++        connectWiFi(ssid, pass);
++    	config(auth, domain, port);
++    }
++
++    void begin(const char* auth,
++               const char* ssid,
++               const char* pass,
++               IPAddress   ip,
++               uint16_t    port = BLYNK_DEFAULT_PORT)
++    {
++        connectWiFi(ssid, pass);
++    	config(auth, ip, port);
++    }
++
++};
++
++#endif
+diff -Naur Blynk/BlynkSimpleFishino.h Blynk_Fishino/BlynkSimpleFishino.h
+--- Blynk/BlynkSimpleFishino.h	1970-01-01 01:00:00.000000000 +0100
++++ Blynk_Fishino/BlynkSimpleFishino.h	2016-04-18 18:53:06.000000000 +0200
+@@ -0,0 +1,26 @@
++/**
++ * @file       BlynkSimpleFishino.h
++ * @author     Massimo Del Fedele
++ * @license    This project is released under the MIT License (MIT)
++ * @copyright  Copyright (c) 2016 Massimo Del Fedele
++ * @date       April 2016
++ * @brief
++ *
++ */
++#ifndef BlynkSimpleFishino_h
++#define BlynkSimpleFishino_h
++
++#ifndef BLYNK_INFO_CONNECTION
++#define BLYNK_INFO_CONNECTION  "Fishino"
++#endif
++
++#include <Fishino.h>
++#include <Adapters/BlynkFishino.h>
++
++static FishinoClient _blynkWifiClient;
++static BlynkArduinoClient _blynkTransport(_blynkWifiClient);
++BlynkWifiCommon Blynk(_blynkTransport);
++
++#include <BlynkWidgets.h>
++
++#endif
+diff -Naur Blynk/examples/BoardsAndShields/Fishino_WiFi/Fishino_WiFi.ino Blynk_Fishino/examples/BoardsAndShields/Fishino_WiFi/Fishino_WiFi.ino
+--- Blynk/examples/BoardsAndShields/Fishino_WiFi/Fishino_WiFi.ino	1970-01-01 01:00:00.000000000 +0100
++++ Blynk_Fishino/examples/BoardsAndShields/Fishino_WiFi/Fishino_WiFi.ino	2016-03-19 14:03:04.000000000 +0100
+@@ -0,0 +1,52 @@
++/**************************************************************
++ * Blynk is a platform with iOS and Android apps to control
++ * Arduino, Raspberry Pi and the likes over the Internet.
++ * You can easily build graphic interfaces for all your
++ * projects by simply dragging and dropping widgets.
++ *
++ *   Downloads, docs, tutorials: http://www.blynk.cc
++ *   Blynk community:            http://community.blynk.cc
++ *   Social networks:            http://www.fb.com/blynkapp
++ *                               http://twitter.com/blynk_app
++ *
++ * Blynk library is licensed under MIT license
++ * This example code is in public domain.
++ *
++ **************************************************************
++ * This example shows how to use Arduino WiFi shield
++ * to connect your project to Blynk.
++ *
++ * Please update your shield firmware:
++ *   https://www.arduino.cc/en/Hacking/WiFiShieldFirmwareUpgrading
++ *
++ * Feel free to apply it to any other example. It's simple!
++ *
++ **************************************************************/
++
++#define BLYNK_PRINT Serial    // Comment this out to disable prints and save space
++#include <SPI.h>
++#include <WiFi.h>
++#include <BlynkSimpleWifi.h>
++
++// You should get Auth Token in the Blynk App.
++// Go to the Project Settings (nut icon).
++char auth[] = "YourAuthToken";
++
++// Your WiFi credentials
++char ssid[] = "YourNetworkName";
++char pass[] = "YourPassword";        // Set to "" for open networks
++
++void setup()
++{
++  Serial.begin(9600);
++  Blynk.begin(auth, ssid, pass);
++  // Or specify server using one of those commands:
++  //Blynk.begin(auth, ssid, pass, "blynk-cloud.com", 8442);
++  //Blynk.begin(auth, ssid, pass, server_ip, port);
++}
++
++void loop()
++{
++  Blynk.run();
++}
++

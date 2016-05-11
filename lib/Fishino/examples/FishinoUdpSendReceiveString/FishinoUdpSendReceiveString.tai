@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE TheArduIDE>
+<TheArduIDE>
+	<ProjectType value="0"/>
+	<Files>
+		<item>FishinoUdpSendReceiveString.ino</item>
+	</Files>
+	<Libraries>
+		<item>Fishino</item>
+		<item>Flash</item>
+		<item>SPI</item>
+	</Libraries>
+	<OpenedFiles>
+		<key>/home/massimo/sketchbook/FishinoUdpSendReceiveString/FishinoUdpSendReceiveString.ino</key>
+		<value value="965"/>
+	</OpenedFiles>
+	<CurrentFile>/home/massimo/sketchbook/FishinoUdpSendReceiveString/FishinoUdpSendReceiveString.ino</CurrentFile>
+</TheArduIDE>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE TheArduIDE>
+<TheArduIDE>
+	<ProjectType value="0"/>
+	<Files>
+		<item>SimpleWebServer.ino</item>
+	</Files>
+	<Libraries>
+		<item>Fishino</item>
+		<item>FishinoWebServer</item>
+		<item>Flash</item>
+		<item>SPI</item>
+		<item>SD</item>
+	</Libraries>
+	<OpenedFiles>
+		<key>/home/massimo/sketchbook/SimpleWebServer/SimpleWebServer.ino</key>
+		<value value="5136"/>
+	</OpenedFiles>
+	<CurrentFile>/home/massimo/sketchbook/SimpleWebServer/SimpleWebServer.ino</CurrentFile>
+</TheArduIDE>

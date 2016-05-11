@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE TheArduIDE>
+<TheArduIDE>
+	<ProjectType value="0"/>
+	<Files>
+		<item>FileUpload.ino</item>
+		<item>README.txt</item>
+		<item>upload.bat</item>
+		<item>upload.sh</item>
+	</Files>
+	<Libraries>
+		<item>Fishino</item>
+		<item>FishinoWebServer</item>
+		<item>Flash</item>
+		<item>SD</item>
+		<item>SPI</item>
+	</Libraries>
+	<OpenedFiles>
+		<key>/home/massimo/sketchbook/FileUpload/FileUpload.ino</key>
+		<value value="7970"/>
+	</OpenedFiles>
+	<CurrentFile>/home/massimo/sketchbook/FileUpload/FileUpload.ino</CurrentFile>
+</TheArduIDE>
